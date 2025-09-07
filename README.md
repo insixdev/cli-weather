@@ -34,31 +34,13 @@ Ejecuta el programa desde la terminal indicando la ciudad:
 ```bash
 ./cli-weather [ciudad]
 ```
-O, si es un script de Python:
 
-```bash
-python cli_weather.py [ciudad]
-```
 
-**Ejemplo:**
-
-```bash
-./cli-weather Madrid
-```
-
-**Salida esperada:**
-
-```
-Clima en Madrid:
-- Temperatura: 28°C
-- Humedad: 47%
-- Viento: 12 km/h
-- Descripción: Cielo despejado
-```
 
 ## Configuración
 
 Algunas versiones pueden requerir una API Key para servicios de clima (como OpenWeatherMap). Consulta el archivo de configuración `.env` o las instrucciones dentro del código fuente para agregar tu clave.
+Agregar su api key en el .env
 
 ## Requisitos
 
