@@ -1,4 +1,5 @@
 use clap::{Parser, Subcommand};
+use crate::api::models::*;
 
 #[derive(Parser)]
 #[command(name = "cli-weather", version = "1.0", about, long_about = None, author = "Insixdev")]
@@ -40,10 +41,12 @@ struct ForeCastArgs {
     verbose: bool,
 
 }
-pub fn command_forecast(){
+pub fn command_forecast(wr: WeatherResponse){
     let cli = Cli::parse();
     match cli.command {
         Command::Get(args) => {
+            println!("El clima actual de {:?} es de {} ", wr.location.name, wr.current.cloud);
+            println!("temp: {}", wr.current.temp_c);
             if args.verbose {
                 print!("mas info waza");
             }
