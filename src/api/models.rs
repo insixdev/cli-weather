@@ -2,7 +2,7 @@ use serde::Deserialize;
 
 
 #[derive(Debug, Deserialize)]
-pub struct WeatherResponse {
+pub struct WeatherData{
     pub location: Location,
     pub current: Current,
 }
@@ -17,7 +17,7 @@ pub struct Location {
 
 #[derive(Debug, Deserialize)]
 pub struct Current {
-    pub temp_c: f64,
+    pub temp: f64,
     pub condition: Condition,
     pub is_day: u8,
     pub cloud: u8,

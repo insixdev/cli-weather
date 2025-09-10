@@ -1,67 +1,70 @@
 use clap::{Parser, Subcommand};
 use crate::api::models::*;
+use crate::api::request::*;
 
 #[derive(Parser)]
 #[command(name = "cli-weather", version = "1.0", about, long_about = None, author = "Insixdev")]
 struct Cli {
-    #[command(subcommand)]
-    command: Command,
+   #[command(subcommand)]
+   command: Command,
+
+  #[clap(short, long, global = true, default_value = "es")]
+  lang: String,
 }
 
 #[derive(Subcommand)]
 enum Command{
-    /// get el clima actual de la city dada 
-    Get(GetArgs), 
+   /// get el clima actual de la city dada 
+   Get(GetArgs), 
 
-    // the forecast of a city with the given days 
-    Forecast(ForeCastArgs),
+   // the forecast of a city with the given days 
+   Forecast(ForeCastArgs),
 
 }
 
 /// Argumentos para el subcomando `get`
 #[derive(Parser)]
 struct GetArgs {
-    /// Nombre de la ciudad
-    #[arg(short, long)]
-    city: String,
+   /// Nombre de la ciudad
+   #[arg(short, long)]
+   city: String,
+   temp: String, 
 
-    /// Mostrar más detalles (verbose)
-    #[arg(short, long, action = clap::ArgAction::SetTrue)]
-    verbose: bool,
+   
+
+
+   /// Mostrar más detalles (verbose)
+   #[arg(short, long, action = clap::ArgAction::SetTrue)]
+   verbose: bool,
 }
+
 #[derive(Parser)]
 struct ForeCastArgs {
-    #[arg(short, long)]
-    city: String,
+   #[arg(short, long)]
+   city: String,
 
-    #[arg(short, long, default_value_t = 3)]
-    days: u8,
+   #[arg(short, long, default_value_t = 3)]
+   days: u8,
 
-    #[arg(short, long, action = clap::ArgAction::SetTrue)]
-    verbose: bool,
+   #[arg(short, long, action = clap::ArgAction::SetTrue)]
+   verbose: bool,
 
 }
-pub fn command_forecast(wr: WeatherResponse){
-    let cli = Cli::parse();
-    match cli.command {
-        Command::Get(args) => {
-            println!("El clima actual de {:?} es de {} ", wr.location.name, wr.current.cloud);
-            println!("temp: {}", wr.current.temp_c);
-            if args.verbose {
-                print!("mas info waza");
-            }
-        }
-        Command::Forecast(args) => {
-            // do things
-            if args.verbose {
-                println!("mas info of forecast ");
-            }
+pub fn command_forecast(wr: WeatherData){
+   let cli = Cli::parse();
+   match cli.command {
+      Command::Get(args) => {
+            
+      }
+      Command::Forecast(args) => {
+         // do things
+         if args.verbose {
+            println!("mas info of forecast ");
+         }
 
-        }
+      }
 
-
-    }
-
+   }
 
 }
 
