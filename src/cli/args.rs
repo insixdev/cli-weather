@@ -1,19 +1,18 @@
 use clap::{Parser, Subcommand};
-use crate::api::models::*;
-use crate::api::request::*;
+
 
 #[derive(Parser)]
 #[command(name = "cli-weather", version = "1.0", about, long_about = None, author = "Insixdev")]
-struct Cli {
+pub struct Cli {
    #[command(subcommand)]
-   command: Command,
+  pub command: Command,
 
   #[clap(short, long, global = true, default_value = "es")]
-  lang: String,
+  pub lang: String,
 }
 
 #[derive(Subcommand)]
-enum Command{
+pub enum Command{
    /// get el clima actual de la city dada 
    Get(GetArgs), 
 
@@ -24,22 +23,20 @@ enum Command{
 
 /// Argumentos para el subcomando `get`
 #[derive(Parser)]
-struct GetArgs {
+pub struct GetArgs {
    /// Nombre de la ciudad
    #[arg(short, long)]
    city: String,
    temp: String, 
-
    
-
 
    /// Mostrar más detalles (verbose)
    #[arg(short, long, action = clap::ArgAction::SetTrue)]
-   verbose: bool,
+   pub verbose: bool,
 }
 
 #[derive(Parser)]
-struct ForeCastArgs {
+pub struct ForeCastArgs {
    #[arg(short, long)]
    city: String,
 
@@ -47,26 +44,6 @@ struct ForeCastArgs {
    days: u8,
 
    #[arg(short, long, action = clap::ArgAction::SetTrue)]
-   verbose: bool,
+   pub verbose: bool,
 
 }
-pub fn command_forecast(wr: WeatherData){
-   let cli = Cli::parse();
-   match cli.command {
-      Command::Get(args) => {
-            
-      }
-      Command::Forecast(args) => {
-         // do things
-         if args.verbose {
-            println!("mas info of forecast ");
-         }
-
-      }
-
-   }
-
-}
-
-
-

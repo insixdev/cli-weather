@@ -1,9 +1,12 @@
 use curl::easy::Easy;
 use dotenv::dotenv;
 use std::env;
+mod domains;
 mod api;
 mod cli;
-use crate::{api::{models::WeatherData, request::*}, cli::commands::command_forecast};
+use crate::domains::weather::WeatherData;
+use api::client::*;
+use cli::display::command_forecast;
 
 // tipo string para constantes &str, &'static str, es la otra opcion para q este nunca se elimine y
 // esta directamente enlazado con el binarios raiz del programa

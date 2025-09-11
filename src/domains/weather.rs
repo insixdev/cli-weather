@@ -1,5 +1,21 @@
 use serde::Deserialize;
 
+#[derive(Debug)]
+enum Temp {
+   METRIC = 0,
+   IMPERIAL = 1,
+   STANDART = 2,
+}
+pub struct RequestGet{
+   lang: String,
+   city: String,
+   humidity: u8,
+   temp: String,
+   pressure: Option<u32>,
+   wind_speed: f32,
+   datetime: Option<String>,
+   days: Option<i32> // ponele
+}
 
 #[derive(Debug, Deserialize)]
 pub struct WeatherData{

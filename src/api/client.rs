@@ -1,22 +1,8 @@
+/// client do the HTTP req functions
 use curl::easy::Easy;
 /// new url req for a city, of forecast information the basic of the applicatio
 /// url_wheater is thinking for the request on the endpoint current of the api
-#[derive(Debug)]
-enum Temp {
-   METRIC = 0,
-   IMPERIAL = 1,
-   STANDART = 2,
-}
-pub struct RequestGet{
-   lang: String,
-   city: String,
-   humidity: u8,
-   temp: String,
-   pressure: Option<u32>,
-   wind_speed: f32,
-   datetime: Option<String>,
-   days: Option<i32> // ponele
-}
+
 
 pub fn url_req_city(url_b: &String, city: String, api_key: String, current: &str) -> String {
    let final_url = format!("{}{}", url_b, current);
